@@ -1,90 +1,1367 @@
-
 <!DOCTYPE html>
-<html lang="pt-br"
-<head>   
-       <meta charset="UTF-8">
-       <meta name="viewport" content="width=device-width, initial-scale=1.0"
-       <title>Document</title>
-</head>
-</body>
-  <h1>meu site tech</h1>
-  <p>vou compartilhar conhecimentos sobre tecnologia e programação </p>
-  <style>
-       header {   
-           background-color: aqua;
-           color: blue;
-           text-align: center;
-           max-width: 800px;
-           margin: 0 auto; 
-           padding: 16px;
-              }
+<html lang="pt-BR">
 
-            main  { 
-               background-color: aquamarine;
-               color: blanchedalmond;
-               display: flex;
-              }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-              img { 
-         width: 80px;
-         height: 80px;
-         }  
-          . artigo-autor {
-              font-weight: bold;
+    <title>Xadrez - História, Regras e Curiosidades</title>
 
-          }
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-          </style>
-       </header>
+        html {
+            scroll-behavior: smooth;
+        }
 
-       <main>
-        <img src="imagem-blog.png"
-            alt="logotipo conceitual de tecnologia e educação: um livro aberto de onde emerge um cerebro digital
-            brilhante,cercado por icones de wi-fi, circuitos e lampadas de ideia. cores em tons azul e branco.">
-            <div>
- <h2>Meu primeiro post</h2>
-                <p class="artigo-autor">Por: Marcelo Paludetto</p>
-                <p>Boas-vindas ao meu novo blog! Aqui vou compartilhar dicas de programação e curiosidades da área de
-                    tecnologia.</p>
-                <button>❤️ <span>0</span></button>
-                <button>👍 <span>0</span></button>
-            </div>
-        </article>
-        <article>
-            <img src="imagem-blog.png"
-                alt="Logotipo conceitual de tecnologia e educação: um livro aberto de onde emerge um cérebro digital brilhante, cercado por ícones de Wi-Fi, circuitos e lâmpada de ideia. Cores em tons de azul e branco.">
-            <div>
-                <h2>Meu segundo post</h2>
-                <p class="artigo-autor">Por: Marcelo Paludetto</p>
-                <p>Boas-vindas ao meu novo blog! Aqui vou compartilhar dicas de programação e curiosidades da área de
-                    tecnologia.</p>
-                <button>❤️ <span>0</span></button>
-                <button>👍 <span>0</span></button>
-            </div>
-        </article>
-    </main>
-</body>
-<script>
-    const botoes = document.querySelectorAll("button");
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f3efe6;
+            color: #292929;
+            line-height: 1.7;
+        }
 
-    botoes.forEach(function (botao) {
-        let curtiu = false;
-        botao.addEventListener("click", botaoClicado);
-        function botaoClicado() {
-            console.log("fui clicado");
-            let texto = botao.querySelector("span");
-            if (curtiu === false){
-                texto.textContent++;
-                curtiu = true;
-            } else{
-                texto.textContent--;
-                curtiu = false;
+        /* CABEÇALHO */
+
+        header {
+            background:
+                linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.75)),
+                linear-gradient(135deg, #171717, #4b3523);
+
+            color: white;
+            text-align: center;
+            padding: 90px 20px;
+        }
+
+        header .icone {
+            font-size: 70px;
+            margin-bottom: 15px;
+        }
+
+        header h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        header p {
+            max-width: 750px;
+            margin: auto;
+            font-size: 19px;
+            color: #dddddd;
+        }
+
+        /* MENU */
+
+        nav {
+            background: #191919;
+            padding: 16px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 12px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #d5a84b;
+        }
+
+        /* CONTEÚDO */
+
+        main {
+            width: 90%;
+            max-width: 1100px;
+            margin: 45px auto;
+        }
+
+        section {
+            background: white;
+            margin-bottom: 35px;
+            padding: 40px;
+            border-radius: 14px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        section h2 {
+            color: #4c351f;
+            font-size: 32px;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #c99b4b;
+            padding-bottom: 10px;
+        }
+
+        section h3 {
+            color: #604323;
+            font-size: 23px;
+            margin-top: 25px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 17px;
+            text-align: justify;
+        }
+
+        strong {
+            color: #4c351f;
+        }
+
+        /* DESTAQUES */
+
+        .destaque {
+            background: #f5e9cc;
+            border-left: 6px solid #c08c35;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 6px;
+        }
+
+        .destaque p {
+            margin-bottom: 0;
+        }
+
+        /* TABULEIRO */
+
+        .tabuleiro-container {
+            display: flex;
+            justify-content: center;
+            margin: 35px 0;
+        }
+
+        .tabuleiro {
+            display: grid;
+            grid-template-columns: repeat(8, 55px);
+            grid-template-rows: repeat(8, 55px);
+            border: 7px solid #4a3020;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .casa {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 38px;
+        }
+
+        .clara {
+            background: #f0d9b5;
+        }
+
+        .escura {
+            background: #b58863;
+        }
+
+        /* PEÇAS */
+
+        .pecas {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .peca {
+            background: #faf8f3;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 25px;
+            transition: 0.3s;
+        }
+
+        .peca:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+        }
+
+        .peca .simbolo {
+            font-size: 48px;
+            float: left;
+            margin-right: 15px;
+        }
+
+        .peca h3 {
+            margin-top: 0;
+            padding-top: 8px;
+        }
+
+        .peca p {
+            clear: both;
+        }
+
+        /* LISTA */
+
+        ul {
+            margin-left: 25px;
+            margin-top: 15px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        /* FASES DO JOGO */
+
+        .fases {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .fase {
+            padding: 25px;
+            border-radius: 10px;
+            background: #f7f2e8;
+            border-top: 5px solid #a47736;
+        }
+
+        .fase h3 {
+            margin-top: 0;
+        }
+
+        /* CURIOSIDADES */
+
+        .curiosidades {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .curiosidade {
+            background: #f7f2e8;
+            padding: 18px;
+            border-radius: 8px;
+            border-left: 4px solid #b8873d;
+        }
+
+        /* RODAPÉ */
+
+        footer {
+            background: #191919;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+        }
+
+        footer .rei {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        footer p {
+            text-align: center;
+            color: #cccccc;
+            margin-bottom: 5px;
+        }
+
+        /* RESPONSIVIDADE */
+
+        @media (max-width: 800px) {
+
+            header h1 {
+                font-size: 35px;
+            }
+
+            nav a {
+                display: inline-block;
+                margin: 5px 7px;
+                font-size: 14px;
+            }
+
+            section {
+                padding: 25px;
+            }
+
+            .pecas,
+            .fases,
+            .curiosidades {
+                grid-template-columns: 1fr;
+            }
+
+            .tabuleiro {
+                grid-template-columns: repeat(8, 40px);
+                grid-template-rows: repeat(8, 40px);
+            }
+
+            .casa {
+                font-size: 27px;
             }
         }
-    })
+
+        @media (max-width: 450px) {
+
+            header {
+                padding: 60px 15px;
+            }
+
+            header h1 {
+                font-size: 28px;
+            }
+
+            header p {
+                font-size: 16px;
+            }
+
+            main {
+                width: 94%;
+            }
+
+            section {
+                padding: 20px;
+            }
+
+            section h2 {
+                font-size: 25px;
+            }
+
+            .tabuleiro {
+                grid-template-columns: repeat(8, 32px);
+                grid-template-rows: repeat(8, 32px);
+                border-width: 4px;
+            }
+
+            .casa {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- CABEÇALHO -->
+
+    <header>
+
+        <div class="icone">♟️</div>
+
+        <h1>Xadrez: História, Regras e Curiosidades</h1>
+
+        <p>
+            Descubra a história, as regras, as peças, as estratégias
+            e as curiosidades de um dos jogos mais fascinantes do mundo.
+        </p>
+
+    </header>
 
 
-</script>
+    <!-- MENU -->
+
+    <nav>
+
+        <a href="#sobre">O que é?</a>
+
+        <a href="#tabuleiro">Tabuleiro</a>
+
+        <a href="#pecas">Peças</a>
+
+        <a href="#regras">Regras</a>
+
+        <a href="#historia">História</a>
+
+        <a href="#mestres">Grandes Mestres</a>
+
+        <a href="#estrategia">Estratégia</a>
+
+        <a href="#curiosidades">Curiosidades</a>
+
+    </nav>
+
+
+    <!-- CONTEÚDO -->
+
+    <main>
+
+
+        <!-- O QUE É -->
+
+        <section id="sobre">
+
+            <h2>O que é o xadrez?</h2>
+
+            <p>
+                O xadrez é um jogo de estratégia para dois jogadores,
+                disputado em um tabuleiro com <strong>64 casas</strong>,
+                sendo 32 claras e 32 escuras.
+            </p>
+
+            <p>
+                Cada jogador começa a partida com <strong>16 peças</strong>,
+                totalizando 32 peças no tabuleiro: um rei, uma dama,
+                duas torres, dois bispos, dois cavalos e oito peões.
+            </p>
+
+            <p>
+                O principal objetivo do xadrez é colocar o rei adversário
+                em uma situação em que ele não consiga escapar de um ataque.
+                Essa situação é chamada de <strong>xeque-mate</strong>.
+            </p>
+
+            <p>
+                Diferentemente de muitos jogos, no xadrez não existe sorte
+                envolvida em dados ou cartas. Os jogadores precisam tomar
+                decisões, calcular possibilidades e tentar prever os movimentos
+                do adversário.
+            </p>
+
+            <p>
+                Por isso, o xadrez é frequentemente associado à inteligência,
+                concentração, planejamento e estratégia. Uma única decisão
+                pode mudar completamente o rumo de uma partida.
+            </p>
+
+            <div class="destaque">
+
+                <p>
+                    <strong>Você sabia?</strong> Apesar de suas regras básicas
+                    serem relativamente fáceis de aprender, dominar o xadrez
+                    pode levar muitos anos de estudo e prática.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- TABULEIRO -->
+
+        <section id="tabuleiro">
+
+            <h2>Como funciona o tabuleiro?</h2>
+
+            <p>
+                O tabuleiro de xadrez possui <strong>8 linhas e 8 colunas</strong>,
+                formando 64 casas.
+            </p>
+
+            <p>
+                As colunas são identificadas pelas letras de
+                <strong>a até h</strong>, enquanto as linhas são identificadas
+                pelos números de <strong>1 até 8</strong>.
+            </p>
+
+            <p>
+                Dessa forma, cada casa possui uma identificação própria,
+                como <strong>e4, f6 ou a1</strong>.
+            </p>
+
+            <p>
+                No início da partida, cada jogador possui suas peças organizadas
+                de maneira específica. As peças brancas ficam de um lado do
+                tabuleiro e as pretas do outro.
+            </p>
+
+
+            <!-- TABULEIRO VISUAL -->
+
+            <div class="tabuleiro-container">
+
+                <div class="tabuleiro">
+
+                    <div class="casa clara">♜</div>
+                    <div class="casa escura">♞</div>
+                    <div class="casa clara">♝</div>
+                    <div class="casa escura">♛</div>
+                    <div class="casa clara">♚</div>
+                    <div class="casa escura">♝</div>
+                    <div class="casa clara">♞</div>
+                    <div class="casa escura">♜</div>
+
+                    <div class="casa escura">♟</div>
+                    <div class="casa clara">♟</div>
+                    <div class="casa escura">♟</div>
+                    <div class="casa clara">♟</div>
+                    <div class="casa escura">♟</div>
+                    <div class="casa clara">♟</div>
+                    <div class="casa escura">♟</div>
+                    <div class="casa clara">♟</div>
+
+                    <div class="casa clara"></div>
+                    <div class="casa escura"></div>
+                    <div class="casa clara"></div>
+                    <div class="casa escura"></div>
+                    <div class="casa clara"></div>
+                    <div class="casa escura"></div>
+                    <div class="casa clara"></div>
+                    <div class="casa escura"></div>
+
+                    <div class="casa escura"></div>
+                    <div class="casa clara"></div>
+                    <div class="casa escura"></div>
+                    <div class="casa clara"></div>
+                    <div class="casa escura"></div>
+                    <div class="casa clara"></div>
+                    <div class="casa escura"></div>
+                    <div class="casa clara"></div>
+
+                    <div class="casa clara"></div>
+                    <div class="casa escura"></div>
+                    <div class="casa clara"></div>
+                    <div class="casa escura"></div>
+                    <div class="casa clara"></div>
+                    <div class="casa escura"></div>
+                    <div class="casa clara"></div>
+                    <div class="casa escura"></div>
+
+                    <div class="casa escura"></div>
+                    <div class="casa clara"></div>
+                    <div class="casa escura"></div>
+                    <div class="casa clara"></div>
+                    <div class="casa escura"></div>
+                    <div class="casa clara"></div>
+                    <div class="casa escura"></div>
+                    <div class="casa clara"></div>
+
+                    <div class="casa clara">♙</div>
+                    <div class="casa escura">♙</div>
+                    <div class="casa clara">♙</div>
+                    <div class="casa escura">♙</div>
+                    <div class="casa clara">♙</div>
+                    <div class="casa escura">♙</div>
+                    <div class="casa clara">♙</div>
+                    <div class="casa escura">♙</div>
+
+                    <div class="casa escura">♖</div>
+                    <div class="casa clara">♘</div>
+                    <div class="casa escura">♗</div>
+                    <div class="casa clara">♕</div>
+                    <div class="casa escura">♔</div>
+                    <div class="casa clara">♗</div>
+                    <div class="casa escura">♘</div>
+                    <div class="casa clara">♖</div>
+
+                </div>
+
+            </div>
+
+
+            <div class="destaque">
+
+                <p>
+                    <strong>Dica:</strong> uma regra simples ajuda a lembrar
+                    a posição correta do tabuleiro: a casa localizada no
+                    canto inferior direito de cada jogador deve ser uma
+                    <strong>casa clara</strong>.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- PEÇAS -->
+
+        <section id="pecas">
+
+            <h2>As peças do xadrez</h2>
+
+            <p>
+                Cada peça possui uma maneira diferente de se movimentar.
+                Conhecer esses movimentos é uma das primeiras coisas que
+                qualquer jogador precisa aprender.
+            </p>
+
+
+            <div class="pecas">
+
+
+                <div class="peca">
+
+                    <div class="simbolo">♔</div>
+
+                    <h3>Rei</h3>
+
+                    <p>
+                        O rei é a peça mais importante do jogo. Ele pode se
+                        mover apenas uma casa por vez, em qualquer direção:
+                        para frente, para trás, para os lados ou na diagonal.
+                    </p>
+
+                    <p>
+                        Apesar de ser a peça mais importante, o rei não é
+                        a mais poderosa. O motivo de sua importância é que
+                        a partida termina quando ele sofre um xeque-mate.
+                    </p>
+
+                </div>
+
+
+                <div class="peca">
+
+                    <div class="simbolo">♕</div>
+
+                    <h3>Dama</h3>
+
+                    <p>
+                        A dama, também chamada de rainha, é considerada a
+                        peça mais poderosa do xadrez.
+                    </p>
+
+                    <p>
+                        Ela pode se movimentar quantas casas quiser em
+                        linha reta ou na diagonal, desde que não existam
+                        outras peças bloqueando seu caminho.
+                    </p>
+
+                </div>
+
+
+                <div class="peca">
+
+                    <div class="simbolo">♖</div>
+
+                    <h3>Torre</h3>
+
+                    <p>
+                        A torre pode se movimentar qualquer quantidade de
+                        casas em linha reta, horizontal ou verticalmente.
+                    </p>
+
+                    <p>
+                        Ela é especialmente poderosa quando consegue controlar
+                        colunas e linhas abertas.
+                    </p>
+
+                </div>
+
+
+                <div class="peca">
+
+                    <div class="simbolo">♗</div>
+
+                    <h3>Bispo</h3>
+
+                    <p>
+                        O bispo se movimenta apenas na diagonal e pode
+                        percorrer várias casas de uma só vez.
+                    </p>
+
+                    <p>
+                        Cada bispo permanece durante toda a partida na mesma
+                        cor de casa em que começou.
+                    </p>
+
+                </div>
+
+
+                <div class="peca">
+
+                    <div class="simbolo">♘</div>
+
+                    <h3>Cavalo</h3>
+
+                    <p>
+                        O cavalo possui um movimento único. Ele se desloca
+                        formando uma espécie de <strong>“L”</strong>:
+                        duas casas em uma direção e depois uma casa para o lado.
+                    </p>
+
+                    <p>
+                        Uma característica muito importante é que ele pode
+                        <strong>saltar sobre outras peças</strong>.
+                    </p>
+
+                </div>
+
+
+                <div class="peca">
+
+                    <div class="simbolo">♙</div>
+
+                    <h3>Peão</h3>
+
+                    <p>
+                        O peão é a peça mais numerosa do xadrez. Cada jogador
+                        começa com oito peões.
+                    </p>
+
+                    <p>
+                        Normalmente, o peão avança uma casa para frente, mas
+                        em seu primeiro movimento pode avançar duas casas.
+                    </p>
+
+                    <p>
+                        Para capturar uma peça adversária, porém, ele se move
+                        diagonalmente.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- REGRAS -->
+
+        <section id="regras">
+
+            <h2>Como uma partida termina?</h2>
+
+            <p>
+                A forma mais conhecida de terminar uma partida é através
+                do <strong>xeque-mate</strong>.
+            </p>
+
+            <p>
+                Isso acontece quando o rei está sendo atacado e não existe
+                nenhuma maneira legal de escapar do ataque.
+            </p>
+
+            <p>
+                Quando o rei está ameaçado, mas ainda existe uma maneira
+                de escapar, a situação é chamada de <strong>xeque</strong>.
+            </p>
+
+            <h3>Empate</h3>
+
+            <p>
+                Também existem partidas que terminam em empate.
+                Isso pode acontecer de várias maneiras, como quando nenhum
+                dos jogadores possui material suficiente para conseguir
+                dar xeque-mate.
+            </p>
+
+            <h3>Afogamento</h3>
+
+            <p>
+                O afogamento acontece quando um jogador não está em xeque,
+                mas não possui nenhum movimento legal para realizar.
+                Nesse caso, a partida termina empatada.
+            </p>
+
+
+            <h3>O que é o roque?</h3>
+
+            <p>
+                O <strong>roque</strong> é um dos movimentos mais curiosos
+                do xadrez porque envolve duas peças ao mesmo tempo:
+                o rei e uma das torres.
+            </p>
+
+            <p>
+                Nesse movimento, o rei se desloca duas casas em direção
+                à torre e a torre passa para a casa imediatamente ao lado
+                do rei.
+            </p>
+
+            <p>
+                O roque é importante porque geralmente permite que o jogador
+                proteja melhor o rei e coloque uma torre em uma posição
+                mais ativa.
+            </p>
+
+
+            <h3>Promoção do peão</h3>
+
+            <p>
+                Uma das regras mais interessantes do xadrez acontece quando
+                um peão consegue chegar à última linha do tabuleiro.
+            </p>
+
+            <p>
+                Quando isso acontece, ele pode ser promovido e transformado
+                em outra peça, normalmente uma dama.
+            </p>
+
+            <p>
+                Porém, também é possível escolher uma torre, bispo ou cavalo.
+            </p>
+
+            <div class="destaque">
+
+                <p>
+                    Em situações extremamente raras, um jogador pode até
+                    terminar com várias damas no tabuleiro.
+                </p>
+
+            </div>
+
+
+            <h3>O que é en passant?</h3>
+
+            <p>
+                O <strong>en passant</strong> é provavelmente uma das regras
+                mais desconhecidas do xadrez.
+            </p>
+
+            <p>
+                Ele permite que um peão capture outro peão em uma situação
+                específica.
+            </p>
+
+            <p>
+                Se um peão adversário avançar duas casas de uma vez a partir
+                de sua posição inicial e parar ao lado de um peão adversário,
+                esse outro peão pode capturá-lo como se ele tivesse avançado
+                apenas uma casa.
+            </p>
+
+            <p>
+                O detalhe curioso é que essa captura precisa ser feita
+                imediatamente. Se o jogador não fizer o en passant naquele
+                momento, perde a oportunidade.
+            </p>
+
+        </section>
+
+
+        <!-- HISTÓRIA -->
+
+        <section id="historia">
+
+            <h2>A história do xadrez</h2>
+
+            <p>
+                A origem exata do xadrez não é totalmente conhecida,
+                mas acredita-se que o jogo tenha surgido na
+                <strong>Índia</strong>, provavelmente por volta do século VI.
+            </p>
+
+            <p>
+                Um dos jogos frequentemente relacionado à origem do xadrez
+                é o <strong>chaturanga</strong>, um antigo jogo indiano que
+                representava diferentes partes de um exército.
+            </p>
+
+            <p>
+                Com o passar do tempo, o jogo se espalhou para outras regiões.
+            </p>
+
+            <p>
+                O xadrez chegou à Pérsia e posteriormente ao mundo islâmico.
+                A partir daí, foi levado para diferentes partes da Europa.
+            </p>
+
+            <p>
+                Durante a Idade Média, o jogo passou por diversas mudanças.
+                As regras das peças foram sendo modificadas até que o xadrez
+                se aproximasse da forma que conhecemos atualmente.
+            </p>
+
+            <p>
+                Uma das maiores mudanças ocorreu com a transformação da dama
+                em uma peça extremamente poderosa. A partir dessas mudanças,
+                o jogo ficou mais rápido e dinâmico.
+            </p>
+
+
+            <h2>O xadrez moderno</h2>
+
+            <p>
+                Ao longo dos séculos XIX e XX, o xadrez se tornou cada vez
+                mais organizado. Foram criados clubes, torneios e competições
+                internacionais.
+            </p>
+
+            <p>
+                Em <strong>1886</strong>, Wilhelm Steinitz enfrentou
+                Johannes Zukertort em uma disputa que é geralmente reconhecida
+                como o primeiro Campeonato Mundial de Xadrez.
+            </p>
+
+            <p>
+                Steinitz venceu e passou a ser considerado o primeiro campeão
+                mundial oficial.
+            </p>
+
+            <p>
+                Desde então, vários jogadores marcaram a história do xadrez,
+                como <strong>Emanuel Lasker, José Raúl Capablanca,
+                Alexander Alekhine, Mikhail Botvinnik, Bobby Fischer,
+                Anatoly Karpov, Garry Kasparov, Vladimir Kramnik</strong>
+                e <strong>Magnus Carlsen</strong>.
+            </p>
+
+            <p>
+                Cada geração trouxe novas ideias, estratégias e estilos de jogo.
+            </p>
+
+        </section>
+
+
+        <!-- GRANDES MESTRES -->
+
+        <section id="mestres">
+
+            <h2>Grandes mestres do xadrez</h2>
+
+            <h3>♟ Garry Kasparov</h3>
+
+            <p>
+                Entre os jogadores mais famosos da história está
+                <strong>Garry Kasparov</strong>, que foi campeão mundial
+                durante muitos anos e ficou conhecido por seu estilo agressivo
+                e sua enorme capacidade de cálculo.
+            </p>
+
+
+            <h3>♟ Bobby Fischer</h3>
+
+            <p>
+                Outro nome extremamente importante é
+                <strong>Bobby Fischer</strong>, dos Estados Unidos.
+                Fischer se tornou campeão mundial em 1972 ao derrotar
+                Boris Spassky em uma das disputas mais famosas da história
+                do xadrez.
+            </p>
+
+
+            <h3>♟ Magnus Carlsen</h3>
+
+            <p>
+                Também existe <strong>Magnus Carlsen</strong>, da Noruega,
+                que se tornou campeão mundial e alcançou um dos maiores
+                níveis de desempenho já registrados no xadrez competitivo.
+            </p>
+
+            <p>
+                Além de suas conquistas, Carlsen ficou conhecido por sua
+                habilidade em transformar posições aparentemente equilibradas
+                em vitórias.
+            </p>
+
+        </section>
+
+
+        <!-- INTELIGÊNCIA -->
+
+        <section>
+
+            <h2>Xadrez e inteligência</h2>
+
+            <p>
+                O xadrez costuma ser associado à inteligência porque exige
+                diversas habilidades mentais.
+            </p>
+
+            <p>
+                Durante uma partida, o jogador precisa analisar a posição
+                atual, imaginar possíveis movimentos futuros, identificar
+                ameaças e escolher entre diferentes alternativas.
+            </p>
+
+            <p>
+                Também é necessário controlar as emoções. Um jogador pode
+                possuir uma posição excelente e ainda assim perder se
+                cometer um erro por excesso de confiança ou falta de
+                concentração.
+            </p>
+
+            <p>
+                Por isso, o xadrez pode ajudar a desenvolver hábitos como
+                planejamento, paciência e capacidade de análise.
+            </p>
+
+            <p>
+                Entretanto, ser bom no xadrez não significa simplesmente
+                possuir uma memória extraordinária. A experiência, o estudo
+                e a prática possuem um papel enorme no desenvolvimento de
+                um jogador.
+            </p>
+
+        </section>
+
+
+        <!-- FASES -->
+
+        <section id="estrategia">
+
+            <h2>As três fases de uma partida</h2>
+
+            <p>
+                Uma partida de xadrez geralmente pode ser dividida em três
+                grandes fases: <strong>abertura, meio-jogo e final</strong>.
+            </p>
+
+
+            <div class="fases">
+
+                <div class="fase">
+
+                    <h3>♟ Abertura</h3>
+
+                    <p>
+                        A abertura corresponde aos primeiros movimentos
+                        da partida.
+                    </p>
+
+                    <p>
+                        Nesse momento, os jogadores procuram desenvolver
+                        suas peças, controlar o centro do tabuleiro e
+                        colocar o rei em segurança.
+                    </p>
+
+                    <p>
+                        Existem milhares de aberturas conhecidas, como
+                        <strong>Gambito da Dama, Defesa Siciliana,
+                        Defesa Francesa</strong> e <strong>Ruy López</strong>.
+                    </p>
+
+                </div>
+
+
+                <div class="fase">
+
+                    <h3>⚔️ Meio-jogo</h3>
+
+                    <p>
+                        No meio-jogo, a partida normalmente fica mais complexa.
+                    </p>
+
+                    <p>
+                        Os jogadores começam a criar ataques, realizar
+                        combinações, trocar peças e tentar obter vantagens
+                        posicionais.
+                    </p>
+
+                    <p>
+                        É nessa fase que podem surgir algumas das jogadas
+                        mais espetaculares do xadrez, incluindo sacrifícios
+                        de peças.
+                    </p>
+
+                </div>
+
+
+                <div class="fase">
+
+                    <h3>♔ Final</h3>
+
+                    <p>
+                        O final acontece quando muitas peças já foram trocadas
+                        e restam poucas peças no tabuleiro.
+                    </p>
+
+                    <p>
+                        Nessa etapa, cada movimento pode ser decisivo.
+                        Conhecer técnicas de finais é fundamental para
+                        transformar uma pequena vantagem em vitória.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SACRIFÍCIO -->
+
+        <section>
+
+            <h2>O que é um sacrifício?</h2>
+
+            <p>
+                No xadrez, um jogador pode voluntariamente entregar uma peça
+                ao adversário para conseguir alguma vantagem.
+            </p>
+
+            <p>
+                Isso é chamado de <strong>sacrifício</strong>.
+            </p>
+
+            <p>
+                À primeira vista, perder uma peça parece ser algo ruim.
+                Porém, o jogador pode estar planejando um ataque ao rei,
+                ganhar material posteriormente ou conseguir uma posição
+                muito mais favorável.
+            </p>
+
+            <p>
+                Os sacrifícios são responsáveis por algumas das jogadas
+                mais bonitas e famosas do xadrez.
+            </p>
+
+        </section>
+
+
+        <!-- MATEMÁTICA -->
+
+        <section>
+
+            <h2>O xadrez e a matemática</h2>
+
+            <p>
+                O número de possibilidades existentes no xadrez é gigantesco.
+            </p>
+
+            <p>
+                O matemático <strong>Claude Shannon</strong> estudou a
+                complexidade do xadrez e estimou uma quantidade enorme de
+                possíveis variações de partidas.
+            </p>
+
+            <p>
+                Isso ajuda a explicar por que é praticamente impossível
+                simplesmente decorar todas as partidas possíveis.
+            </p>
+
+            <p>
+                Mesmo com computadores extremamente poderosos, o xadrez
+                continua sendo um jogo de enorme complexidade.
+            </p>
+
+            <div class="destaque">
+
+                <p>
+                    <strong>Um dos motivos da beleza do xadrez:</strong>
+                    cada movimento cria novas possibilidades e transforma
+                    a posição do tabuleiro.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- COMPUTADORES -->
+
+        <section>
+
+            <h2>Computadores contra humanos</h2>
+
+            <p>
+                O desenvolvimento da computação mudou completamente o mundo
+                do xadrez.
+            </p>
+
+            <p>
+                Durante muito tempo, acreditava-se que os melhores jogadores
+                humanos seriam capazes de superar os computadores.
+                Porém, com o avanço da tecnologia, os programas de xadrez
+                ficaram cada vez mais fortes.
+            </p>
+
+            <p>
+                Um dos momentos mais famosos aconteceu em
+                <strong>1997</strong>, quando o computador
+                <strong>Deep Blue</strong>, desenvolvido pela IBM,
+                derrotou o campeão mundial Garry Kasparov em uma série
+                de partidas.
+            </p>
+
+            <p>
+                Esse acontecimento foi considerado um marco na história da
+                inteligência artificial e da computação.
+            </p>
+
+            <p>
+                Atualmente, os computadores conseguem analisar posições em
+                uma velocidade muito superior à capacidade humana.
+            </p>
+
+            <p>
+                Jogadores profissionais utilizam programas de xadrez para
+                estudar partidas, analisar erros e preparar estratégias.
+            </p>
+
+        </section>
+
+
+        <!-- XADREZ ONLINE -->
+
+        <section>
+
+            <h2>Xadrez online</h2>
+
+            <p>
+                A internet também mudou completamente a maneira como as
+                pessoas jogam xadrez.
+            </p>
+
+            <p>
+                Hoje, uma pessoa pode jogar contra adversários de praticamente
+                qualquer lugar do mundo em poucos segundos.
+            </p>
+
+            <p>
+                Existem partidas rápidas, blitz e modalidades em que cada
+                jogador possui apenas alguns minutos para pensar.
+            </p>
+
+            <p>
+                O xadrez online também facilitou o aprendizado. É possível
+                assistir a partidas de grandes jogadores, estudar aberturas,
+                resolver problemas e analisar partidas antigas sem precisar
+                de um tabuleiro físico.
+            </p>
+
+        </section>
+
+
+        <!-- CURIOSIDADES -->
+
+        <section id="curiosidades">
+
+            <h2>Curiosidades incríveis sobre o xadrez</h2>
+
+            <div class="curiosidades">
+
+                <div class="curiosidade">
+                    ♟️ O tabuleiro possui <strong>64 casas</strong>.
+                </div>
+
+                <div class="curiosidade">
+                    ♟️ Cada jogador começa com <strong>16 peças</strong>.
+                </div>
+
+                <div class="curiosidade">
+                    ♟️ A partida começa com <strong>32 peças</strong>.
+                </div>
+
+                <div class="curiosidade">
+                    ♕ A dama é tradicionalmente considerada a peça de maior valor material.
+                </div>
+
+                <div class="curiosidade">
+                    ♘ O cavalo é a única peça que pode saltar sobre outras peças.
+                </div>
+
+                <div class="curiosidade">
+                    ♔ O rei pode participar do roque junto com uma torre.
+                </div>
+
+                <div class="curiosidade">
+                    ♙ Um peão pode ser promovido ao chegar ao outro lado do tabuleiro.
+                </div>
+
+                <div class="curiosidade">
+                    ♟️ Existem partidas que terminam em poucos movimentos.
+                </div>
+
+                <div class="curiosidade">
+                    ♟️ Também existem partidas extremamente longas.
+                </div>
+
+                <div class="curiosidade">
+                    🌎 O xadrez é jogado profissionalmente em praticamente todo o mundo.
+                </div>
+
+                <div class="curiosidade">
+                    💻 Existem competições presenciais e online.
+                </div>
+
+                <div class="curiosidade">
+                    🤖 Computadores modernos conseguem analisar posições de xadrez em uma velocidade impressionante.
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- POPULARIDADE -->
+
+        <section>
+
+            <h2>Por que o xadrez continua tão popular?</h2>
+
+            <p>
+                Mesmo depois de mais de mil anos de história, o xadrez
+                continua sendo um dos jogos de estratégia mais populares
+                do planeta.
+            </p>
+
+            <p>
+                Parte de seu sucesso está na simplicidade das regras básicas.
+                Uma pessoa pode aprender como as peças se movimentam em
+                pouco tempo. Porém, dominar realmente o jogo pode levar
+                muitos anos.
+            </p>
+
+            <p>
+                Essa combinação entre regras relativamente simples e
+                possibilidades praticamente infinitas torna o xadrez
+                fascinante.
+            </p>
+
+            <p>
+                Cada partida é diferente. Mesmo quando dois jogadores
+                utilizam a mesma abertura, os acontecimentos podem mudar
+                completamente dependendo das decisões tomadas.
+            </p>
+
+        </section>
+
+
+        <!-- CONCLUSÃO -->
+
+        <section>
+
+            <h2>Conclusão</h2>
+
+            <p>
+                O xadrez é muito mais do que mover peças sobre um tabuleiro.
+                Ele é uma mistura de estratégia, lógica, criatividade,
+                memória, planejamento e tomada de decisões.
+            </p>
+
+            <p>
+                Sua história atravessou séculos e continentes, passando
+                por diferentes culturas até chegar ao jogo moderno que
+                conhecemos hoje.
+            </p>
+
+            <p>
+                Desde partidas entre iniciantes até campeonatos mundiais
+                e disputas entre computadores, o xadrez continua mostrando
+                que um pequeno tabuleiro de 64 casas pode oferecer
+                possibilidades praticamente infinitas.
+            </p>
+
+            <div class="destaque">
+
+                <p>
+                    <strong>♟️ E talvez essa seja uma das maiores curiosidades
+                    do xadrez:</strong> quanto mais você aprende sobre o jogo,
+                    mais percebe o quanto ainda existe para descobrir.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- RODAPÉ -->
+
+    <footer>
+
+        <div class="rei">♔</div>
+
+        <p>
+            <strong>Curiosidades do Xadrez</strong>
+        </p>
+
+        <p>
+            História • Regras • Estratégia • Curiosidades
+        </p>
+
+        <p>
+            © 2026 - Todos os direitos reservados
+        </p>
+
+    </footer>
+
+
+</body>
 
 </html>
 
+
+Esse código já funciona sozinho, sem precisar de arquivos CSS separados. Ele também tem um tabuleiro visual, menu que leva para cada parte da página, cards das peças, seção de curiosidades e adaptação para celular.
